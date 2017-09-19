@@ -1,0 +1,71 @@
+{
+  "name": "exit-intent",
+  "version": "1.0.0",
+  "description": "Exit intent detection library.",
+  "keywords": ["exit", "intent"],
+  "author": "Dan Hayden <dan@tutonics.com>",
+  "license": "MIT",
+  "main": "dist/exit-intent.js",
+  "module": "dist/exit-intent.es.js",
+  "umd:main": "dist/exit-intent.umd.js",
+  "files": ["dist"],
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "lint": "npm run prettier-eslint -- 'src/**/*.{js,json}'",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "prettier-eslint":
+      "prettier-eslint --write --no-semi --single-quote --no-bracket-spacing",
+    "changelog": "standard-version",
+    "size": "npx gzip-size-cli ./dist/exit-intent.js ",
+    "precommit": "lint-staged",
+    "prepush": "npm test",
+    "prepublish": "npm run build"
+  },
+  "lint-staged": {
+    "src/**/*.{js,json}": ["npm run prettier-eslint", "git add"]
+  },
+  "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-eslint": "8.0.0",
+    "babel-plugin-external-helpers": "6.22.0",
+    "babel-plugin-lodash": "3.2.11",
+    "babel-plugin-module-resolver": "2.7.1",
+    "babel-preset-env": "1.6.0",
+    "babel-preset-react": "6.24.1",
+    "babel-preset-stage-2": "6.24.1",
+    "eslint": "4.7.1",
+    "eslint-config-standard": "10.2.1",
+    "eslint-config-standard-jsx": "4.0.2",
+    "eslint-import-resolver-node": "0.3.1",
+    "eslint-loader": "1.9.0",
+    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-node": "5.1.1",
+    "eslint-plugin-promise": "3.5.0",
+    "eslint-plugin-react": "7.3.0",
+    "eslint-plugin-standard": "3.0.1",
+    "husky": "0.14.3",
+    "lint-staged": "4.2.1",
+    "prettier": "1.7.0",
+    "prettier-eslint-cli": "4.3.2",
+    "rollup": "0.50.0",
+    "rollup-plugin-babel": "3.0.2",
+    "rollup-plugin-commonjs": "8.2.1",
+    "rollup-plugin-node-resolve": "3.0.0",
+    "rollup-plugin-uglify": "2.0.1",
+    "rollup-watch": "4.3.1",
+    "standard-version": "4.2.0",
+    "uglify-es": "3.1.1"
+  },
+  "dependencies": {
+    "lodash": "4.17.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danhayden/exit-intent.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danhayden/exit-intent/issues"
+  },
+  "homepage": "https://github.com/danhayden/exit-intent#readme"
+}
