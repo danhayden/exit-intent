@@ -9,15 +9,17 @@
 
 Exit Intent detection library.
 
-```javascript
-import ExitIntent from 'exit-intent'
+## Usage
+
+```js
+import exitIntent from 'exit-intent'
 
 // Initialise
-const removeExitIntent = new ExitIntent({
-  threshold: 50,                          // default 20
-  maxDisplays: 2,                         // default 1
-  eventThrottle: 100,                     // default 200
-  onExitIntent: () => {                   // default no-op function
+const removeExitIntent = exitIntent({
+  threshold: 50,
+  maxDisplays: 2,
+  eventThrottle: 100,
+  onExitIntent: () => {
     console.log('exit-intent triggered')
   }    
 })
@@ -26,10 +28,19 @@ const removeExitIntent = new ExitIntent({
 removeExitIntent()
 ```
 
-- `threshold` maximum distance in pixels from the top of the page to trigger.
-- `maxDisplays` maximum number of times to trigger.
-- `eventThrottle` event throttle in milliseconds.
-- `onExitIntent` function to call when an exit intent has been detected.
+### Options
+
+`threshold` (default 20)  
+maximum distance in pixels from the top of the page to trigger.
+
+`maxDisplays` (default 1)  
+maximum number of times to trigger.
+
+`eventThrottle` (default 200)  
+event throttle in milliseconds.
+
+`onExitIntent` (default no-op function)  
+function to call when an exit intent has been detected.
 
 ### License
 
