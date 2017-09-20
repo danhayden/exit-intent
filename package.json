@@ -1,21 +1,25 @@
 {
   "name": "exit-intent",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Exit intent detection library.",
-  "keywords": ["exit", "intent"],
+  "keywords": [
+    "exit",
+    "intent"
+  ],
   "author": "Dan Hayden <dan@tutonics.com>",
   "license": "MIT",
   "main": "dist/exit-intent.js",
   "module": "dist/exit-intent.es.js",
   "umd:main": "dist/exit-intent.umd.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\"",
     "lint": "npm run prettier-eslint -- 'src/**/*.{js,json}'",
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "prettier-eslint":
-      "prettier-eslint --write --no-semi --single-quote --no-bracket-spacing",
+    "prettier-eslint": "prettier-eslint --write --no-semi --single-quote --no-bracket-spacing",
     "changelog": "standard-version",
     "size": "npx gzip-size-cli ./dist/exit-intent.js ",
     "precommit": "lint-staged",
@@ -23,7 +27,10 @@
     "prepublish": "npm run build"
   },
   "lint-staged": {
-    "src/**/*.{js,json}": ["npm run prettier-eslint", "git add"]
+    "src/**/*.{js,json}": [
+      "npm run prettier-eslint",
+      "git add"
+    ]
   },
   "devDependencies": {
     "babel-core": "6.26.0",
