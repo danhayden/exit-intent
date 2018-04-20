@@ -18,6 +18,7 @@ import exitIntent from 'exit-intent'
 const removeExitIntent = exitIntent({
   threshold: 50,
   maxDisplays: 2,
+  minTrail: 5,
   eventThrottle: 100,
   onExitIntent: () => {
     console.log('exit-intent triggered')
@@ -32,6 +33,9 @@ removeExitIntent()
 
 `threshold` (default 20)  
 maximum distance in pixels from the top of the page to trigger.
+
+`minTrail` (default 10)  
+minimum points towards page top.
 
 `maxDisplays` (default 1)  
 maximum number of times to trigger.
