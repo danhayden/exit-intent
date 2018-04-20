@@ -4,6 +4,7 @@ export default function ExitIntent (options = {}) {
   const defaultOptions = {
     threshold: 20,
     maxDisplays: 1,
+    minTrail: 10,
     eventThrottle: 200,
     onExitIntent: () => {}
   }
@@ -12,6 +13,7 @@ export default function ExitIntent (options = {}) {
     const config = {...defaultOptions, ...options}
     const eventListeners = new Map()
     let displays = 0
+    let trail = []
 
     const addEvent = (eventName, callback) => {
       document.addEventListener(eventName, callback, false)
@@ -24,8 +26,22 @@ export default function ExitIntent (options = {}) {
       eventListeners.delete(key)
     }
 
+    const isMouseMovingUp = () => {
+      let result = true
+      trail.forEach((point, i) => {
+        if (!(trail[i - 1] === undefined || point < trail[i - 1])) {
+          result = false
+        }
+      })
+      return result
+    }
+
     const shouldDisplay = position => {
-      if (position <= config.threshold && displays < config.maxDisplays) {
+      if (
+        isMouseMovingUp() &&
+        position <= config.threshold &&
+        displays < config.maxDisplays
+      ) {
         displays++
         return true
       }
@@ -33,11 +49,15 @@ export default function ExitIntent (options = {}) {
     }
 
     const mouseDidMove = event => {
-      if (shouldDisplay(event.clientY)) {
-        config.onExitIntent()
-        if (displays >= config.maxDisplays) {
-          removeEvents()
+      trail.push(event.clientY)
+      if (trail.length === config.minTrail) {
+        if (shouldDisplay(event.clientY)) {
+          config.onExitIntent()
+          if (displays >= config.maxDisplays) {
+            removeEvents()
+          }
         }
+        trail.splice(0, 1)
       }
     }
 
